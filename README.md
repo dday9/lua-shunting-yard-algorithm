@@ -3,7 +3,7 @@
 An implementation of the Shunting Yard algorithm ([wiki](https://en.wikipedia.org/wiki/Shunting_yard_algorithm)) written in LUA.
 
 ## Demo
-Fiddle: https://www.jdoodle.com/ia/KMQ
+Fiddle: https://www.jdoodle.com/ia/KMT
 
 ## Dependencies
 - LUA 5.4.6

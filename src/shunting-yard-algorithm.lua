@@ -39,10 +39,20 @@ local function shuntingYardAlgorithm(expression)
         local token = expression:sub(i, i)
         if (isWhitespace(token)) then
             goto continue
-        elseif tonumber(token) then
-            local number = "";
-            while i <= #expression and tonumber(expression:sub(i, i)) do
-                local token = expression:sub(i, i)
+        elseif (token == "+" or token == "-") and (i == 1 or isOperator(expression:sub(i - 1, i - 1)) or expression:sub(i - 1, i - 1) == "(") then
+            local number = token
+            i = i + 1
+            while i <= #expression and (tonumber(expression:sub(i, i)) or expression:sub(i, i) == ".") do
+                token = expression:sub(i, i)
+                number = number .. token
+                i = i + 1
+            end
+            i = i - 1
+            table.insert(outputQueue, number)
+        elseif tonumber(token) or token == "." then
+            local number = ""
+            while i <= #expression and (tonumber(expression:sub(i, i)) or expression:sub(i, i) == ".") do
+                token = expression:sub(i, i)
                 number = number .. token
                 i = i + 1
             end
